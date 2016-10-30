@@ -9,6 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.dong.starsmind.R;
+import com.dong.starsmind.constant.AppConstant;
+import com.dong.starsmind.listener.ReloadListener;
 
 /**
  * Created by zengwendong on 16/10/28.
@@ -17,6 +19,9 @@ public class FooterViewHolder extends RecyclerView.ViewHolder {
 
     private TextView tv_tip;//提示文案
     private ProgressBar refresh_progress;
+    private int loadStatus = -1;
+
+    private ReloadListener reloadListener;
 
     public FooterViewHolder(LayoutInflater inflater, ViewGroup parent) {
         this(inflater.inflate(R.layout.layout_load_more, parent, false));
@@ -26,15 +31,42 @@ public class FooterViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         this.tv_tip = (TextView) itemView.findViewById(R.id.tv_tip);
         this.refresh_progress = (ProgressBar) itemView.findViewById(R.id.refresh_progress);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (reloadListener != null) {
+                    reloadListener.reload();
+                }
+            }
+        });
     }
 
-    public void isLoading() {
+    public void setLoadStatus(@AppConstant.LoadStatus int loadStatus){
+        this.loadStatus = loadStatus;
+        if (loadStatus == AppConstant.STATUS_LOADING) {
+            loading();
+        } else if (loadStatus == AppConstant.STATUS_LOAD_END) {
+            loadEnd();
+        } else if (loadStatus == AppConstant.STATUS_LOAD_ERROR) {
+            loadError();
+        } else {
+            hideFooterView();
+        }
+    }
+
+    public void loading() {
         tv_tip.setText(itemView.getContext().getString(R.string.txt_loading));
         tv_tip.setVisibility(View.VISIBLE);
         refresh_progress.setVisibility(View.VISIBLE);
     }
 
-    public void isLoadEnd() {
+    public void loadEnd() {
+        tv_tip.setText(itemView.getContext().getString(R.string.txt_load_end));
+        tv_tip.setVisibility(View.VISIBLE);
+        refresh_progress.setVisibility(View.GONE);
+    }
+
+    public void loadError() {
         tv_tip.setText(itemView.getContext().getString(R.string.txt_load_end));
         tv_tip.setVisibility(View.VISIBLE);
         refresh_progress.setVisibility(View.GONE);
@@ -50,6 +82,17 @@ public class FooterViewHolder extends RecyclerView.ViewHolder {
         tv_tip.setText(tips);
         tv_tip.setVisibility(View.VISIBLE);
         refresh_progress.setVisibility(View.GONE);
+    }
+
+    public void hideFooterView(){
+        itemView.setVisibility(View.GONE);
+    }
+
+    /**
+     * 设置重新加载监听
+     */
+    public void setReloadListener(ReloadListener reloadListener){
+        this.reloadListener = reloadListener;
     }
 
 }

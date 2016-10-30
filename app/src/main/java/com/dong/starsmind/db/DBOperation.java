@@ -1,6 +1,9 @@
 package com.dong.starsmind.db;
 
+import android.text.TextUtils;
+
 import org.xutils.DbManager;
+import org.xutils.db.Selector;
 import org.xutils.ex.DbException;
 import org.xutils.x;
 
@@ -39,18 +42,25 @@ public class DBOperation {
         }
     }
 
-    public static <T> List<T> findAll(Class<T> entityType, int offset, int limit) {
+    public static long count(Class entityType){
         try {
-            return dbManager.selector(entityType).offset(offset).limit(limit).findAll();
+            return dbManager.selector(entityType).count();
         } catch (DbException e) {
             e.printStackTrace();
         }
-        return new ArrayList<>();
+        return 0;
     }
 
-    public static <T> List<T> findAll(Class<T> entityType, int offset, int limit, String orderByColumnName, boolean desc) {
+    public static <T> List<T> findAll(Class<T> entityType, DBPage dbPage) {
         try {
-            return dbManager.selector(entityType).offset(offset).limit(limit).orderBy(orderByColumnName, desc).findAll();
+            int offset = (dbPage.getPageNo()-1) * dbPage.getPageSize();
+            Selector<T> selector = dbManager.selector(entityType).offset(offset).limit(dbPage.getPageSize());
+            if (!TextUtils.isEmpty(dbPage.getColumnName())) {
+                selector.orderBy(dbPage.getColumnName(), dbPage.getDesc());
+            }
+            long rows = selector.count();
+            dbPage.setRows(rows);
+            return selector.findAll();
         } catch (DbException e) {
             e.printStackTrace();
         }

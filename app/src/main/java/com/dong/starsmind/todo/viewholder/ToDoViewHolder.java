@@ -44,6 +44,9 @@ public class ToDoViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(TODO todo) {
+        if (todo == null) {
+            return;
+        }
         tv_time.setText(TimeUtils.formatTimeToString(todo.getTimestamp()));
         tv_content.setText(todo.getContent());
     }

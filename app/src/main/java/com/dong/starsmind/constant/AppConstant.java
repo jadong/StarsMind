@@ -15,4 +15,12 @@ public class AppConstant {
     public @interface LoadStatus {
     }
 
+    //---------------------------------------------------------------
+    public final static int STATUSCODE_0 = 0;
+    public final static int STATUSCODE_1 = 1;
+
+    @IntDef({STATUSCODE_0,STATUSCODE_1})
+    public @interface StatusCode {
+    }
+
 }

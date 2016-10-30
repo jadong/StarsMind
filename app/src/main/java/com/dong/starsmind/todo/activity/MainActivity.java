@@ -10,14 +10,24 @@ import android.view.View;
 
 import com.dong.starsmind.R;
 import com.dong.starsmind.base.BaseActivity;
+import com.dong.starsmind.todo.adapter.ToDoAdapter;
+import com.dong.starsmind.todo.entity.TODO;
+import com.dong.starsmind.todo.presenter.ToDoListPresenter;
+import com.dong.starsmind.todo.view.ToDoListView;
 import com.dong.starsmind.widgets.LoadMoreRecyclerView;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.List;
+
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, ToDoListView {
 
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private FloatingActionButton fab_add;
     private LoadMoreRecyclerView rv_todo_list;
+    private ToDoAdapter toDoAdapter;
+
+    private ToDoListPresenter toDoListPresenter;
+    private int pageNo = 1;
 
     @Override
     protected boolean getEnableSwipeBack() {
@@ -36,7 +46,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected void initView() {
-
+        toDoListPresenter = new ToDoListPresenter(this);
         fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
         fab_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +68,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
 
         rv_todo_list = (LoadMoreRecyclerView) findViewById(R.id.rv_todo_list);
+        rv_todo_list.setLoadMoreListener(new LoadMoreRecyclerView.LoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                pageNo++;
+                toDoListPresenter.loadToDoList(pageNo);
+            }
+        });
+        toDoAdapter = new ToDoAdapter(this);
+        rv_todo_list.setAdapter(toDoAdapter);
     }
 
     @Override
@@ -91,5 +110,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void refreshData(List<TODO> todoList) {
+        toDoAdapter.addData(todoList);
     }
 }

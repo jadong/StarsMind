@@ -5,5 +5,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="txt_loading">加载中...</string>
     <string name="txt_load_end">加载完成</string>
+    <string name="txt_load_error">加载失败,请点击重试</string>
 
 </resources>
