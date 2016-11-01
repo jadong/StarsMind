@@ -1,5 +1,6 @@
 package com.dong.starsmind.todo.activity;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,13 +11,13 @@ import android.view.View;
 
 import com.dong.starsmind.R;
 import com.dong.starsmind.base.BaseActivity;
+import com.dong.starsmind.constant.AppConstant;
+import com.dong.starsmind.db.DBPage;
 import com.dong.starsmind.todo.adapter.ToDoAdapter;
 import com.dong.starsmind.todo.entity.TODO;
 import com.dong.starsmind.todo.presenter.ToDoListPresenter;
 import com.dong.starsmind.todo.view.ToDoListView;
 import com.dong.starsmind.widgets.LoadMoreRecyclerView;
-
-import java.util.List;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, ToDoListView {
 
@@ -53,6 +54,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             public void onClick(View view) {
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
+                Intent intent = new Intent(MainActivity.this,AddToDoActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -113,7 +116,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     @Override
-    public void refreshData(List<TODO> todoList) {
-        toDoAdapter.addData(todoList);
+    public void refreshData(DBPage<TODO> dbPage) {
+        if (dbPage.hasNextPage()) {
+            toDoAdapter.setFooterViewStatus(AppConstant.STATUS_LOADING);
+        } else {
+            toDoAdapter.setFooterViewStatus(AppConstant.STATUS_LOAD_END);
+        }
+        toDoAdapter.addData(dbPage.getDataList());
     }
 }

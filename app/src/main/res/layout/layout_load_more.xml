@@ -26,6 +26,7 @@
             android:layout_height="50dip"
             android:gravity="center"
             android:text="@string/txt_loading"
+            android:textSize="14sp"
             android:textColor="#bfbfbf" />
 
     </LinearLayout>

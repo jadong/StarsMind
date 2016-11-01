@@ -17,16 +17,20 @@ import java.util.List;
 public class ToDoListPresenter {
 
     private ToDoListView view;
+    private DBPage<TODO> dbPage;
 
     public ToDoListPresenter(ToDoListView view) {
         this.view = view;
+        dbPage = new DBPage<>();
+        dbPage.orderBy("timestamp",true);
     }
 
     private ResponseCallback<ResponseTodoData> responseCallback = new ResponseCallback<ResponseTodoData>() {
 
         @Override
         protected void onSuccess(ResponseTodoData data) {
-            view.refreshData(data.getDataList());
+            dbPage.setDataList(data.getDataList());
+            view.refreshData(dbPage);
         }
 
         @Override
@@ -37,7 +41,6 @@ public class ToDoListPresenter {
     };
 
     public void loadToDoList(int pageNo) {
-        final DBPage dbPage = new DBPage();
         dbPage.setPageNo(pageNo);
         ThreadPool.execute(new Runnable() {
             @Override

@@ -29,11 +29,11 @@ public class ToDoAdapter extends RecyclerViewAdapter<TODO> implements ReloadList
     }
 
     /**
-     * 设置加载状态
+     * 设置脚布局的加载状态 AppConstant.STATUS
      *
      * @param loadStatus AppConstant.STATUS
      */
-    public void setLoadStatus(@AppConstant.LoadStatus int loadStatus) {
+    public void setFooterViewStatus(@AppConstant.LoadStatus int loadStatus) {
         this.loadStatus = loadStatus;
     }
 

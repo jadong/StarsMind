@@ -9,14 +9,17 @@ import org.xutils.db.annotation.Table;
 @Table(name = "todo")
 public class TODO {
 
-    @Column(name = "id",isId = true)
+    @Column(name = "id", isId = true)
     private int id;
 
     @Column(name = "content")
     private String content;
 
     @Column(name = "timestamp")
-    private long timestamp;
+    private long timestamp = System.currentTimeMillis() / 1000;//当前时间,秒
+
+    @Column(name = "reminder_time")
+    private long reminderTime;//提醒时间
 
     @Column(name = "status")
     private int status;
@@ -53,4 +56,11 @@ public class TODO {
         this.status = status;
     }
 
+    public long getReminderTime() {
+        return reminderTime;
+    }
+
+    public void setReminderTime(long reminderTime) {
+        this.reminderTime = reminderTime;
+    }
 }

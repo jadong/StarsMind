@@ -1,9 +1,11 @@
 package com.dong.starsmind.db;
 
+import java.util.List;
+
 /**
  * Created by zengwendong on 16/10/30.
  */
-public class DBPage {
+public class DBPage<T> {
 
     private int pageNo;
     private int pageSize = 10;
@@ -11,6 +13,16 @@ public class DBPage {
     private long rows;//总行数
     private String columnName;
     private boolean desc;//是否降序
+
+    private List<T> dataList;//每页的数据集
+
+    public List<T> getDataList() {
+        return dataList;
+    }
+
+    public void setDataList(List<T> dataList) {
+        this.dataList = dataList;
+    }
 
     public long getRows() {
         return rows;
@@ -54,5 +66,12 @@ public class DBPage {
 
     public boolean getDesc() {
         return desc;
+    }
+
+    public boolean hasNextPage(){
+        if (pageNo >= totalPage) {
+            return false;
+        }
+        return true;
     }
 }
