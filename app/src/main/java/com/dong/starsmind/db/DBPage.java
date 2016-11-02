@@ -1,5 +1,7 @@
 package com.dong.starsmind.db;
 
+import org.xutils.db.sqlite.WhereBuilder;
+
 import java.util.List;
 
 /**
@@ -9,10 +11,11 @@ public class DBPage<T> {
 
     private int pageNo;
     private int pageSize = 10;
-    private int totalPage;//总页数
     private long rows;//总行数
     private String columnName;
     private boolean desc;//是否降序
+
+    private WhereBuilder whereBuilder;
 
     private List<T> dataList;//每页的数据集
 
@@ -48,7 +51,19 @@ public class DBPage<T> {
         this.pageSize = pageSize;
     }
 
+    public WhereBuilder getWhereBuilder() {
+        return whereBuilder;
+    }
+
+    public void setWhereBuilder(WhereBuilder whereBuilder) {
+        this.whereBuilder = whereBuilder;
+    }
+
+    /**
+     * 总页数
+     */
     public int getTotalPage() {
+        int totalPage = 0;
         if (pageSize > 0) {
             totalPage = (int) ((rows + pageSize - 1) / pageSize);
         }
@@ -68,8 +83,8 @@ public class DBPage<T> {
         return desc;
     }
 
-    public boolean hasNextPage(){
-        if (pageNo >= totalPage) {
+    public boolean hasNextPage() {
+        if (pageNo >= getTotalPage()) {
             return false;
         }
         return true;

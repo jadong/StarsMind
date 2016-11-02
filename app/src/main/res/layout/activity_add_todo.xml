@@ -21,12 +21,12 @@
     <EditText
         android:id="@+id/et_todo_content"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/view_round_corner"
         android:gravity="top|left"
-        android:maxLines="3"
+        android:minLines="5"
         android:padding="5dp"
         android:textColor="@color/main_font_color"
         android:textSize="14sp" />

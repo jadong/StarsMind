@@ -15,8 +15,8 @@ public class AppUtils {
         return UUID.randomUUID().toString();
     }
 
-    public static void toastShort(String message){
-        Toast.makeText(StarsApplication.appContext, message,Toast.LENGTH_SHORT).show();
+    public static void toastShort(String message) {
+        Toast.makeText(StarsApplication.appContext, message, Toast.LENGTH_SHORT).show();
     }
 
 }

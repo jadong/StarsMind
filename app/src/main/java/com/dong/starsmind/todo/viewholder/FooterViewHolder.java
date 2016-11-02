@@ -1,6 +1,5 @@
 package com.dong.starsmind.todo.viewholder;
 
-import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +48,9 @@ public class FooterViewHolder extends RecyclerView.ViewHolder {
             loadEnd();
         } else if (loadStatus == AppConstant.STATUS_LOAD_ERROR) {
             loadError();
-        } else {
+        } else if (loadStatus == AppConstant.STATUS_LOAD_NO_DATA) {
+            loadNoData();
+        }else {
             hideFooterView();
         }
     }
@@ -67,19 +68,13 @@ public class FooterViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void loadError() {
-        tv_tip.setText(itemView.getContext().getString(R.string.txt_load_end));
+        tv_tip.setText(itemView.getContext().getString(R.string.txt_load_error));
         tv_tip.setVisibility(View.VISIBLE);
         refresh_progress.setVisibility(View.GONE);
     }
 
-    public void setFooterViewText(@StringRes int resId) {
-        tv_tip.setText(itemView.getContext().getString(resId));
-        tv_tip.setVisibility(View.VISIBLE);
-        refresh_progress.setVisibility(View.GONE);
-    }
-
-    public void setFooterViewText(String tips){
-        tv_tip.setText(tips);
+    public void loadNoData() {
+        tv_tip.setText(itemView.getContext().getString(R.string.txt_load_no_data));
         tv_tip.setVisibility(View.VISIBLE);
         refresh_progress.setVisibility(View.GONE);
     }

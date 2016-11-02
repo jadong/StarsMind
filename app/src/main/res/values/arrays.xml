@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="todo_status">
-        <item>待完成</item>
-        <item>正在进行</item>
         <item>已完成</item>
+        <item>正在进行</item>
+        <item>待完成</item>
     </string-array>
 </resources>

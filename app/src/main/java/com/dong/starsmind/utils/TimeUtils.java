@@ -34,7 +34,7 @@ public class TimeUtils {
      * @param dateStr yyyy-MM-dd
      * @return Calendar
      */
-    public static Calendar parseToDate(String dateStr) {
+    public static Calendar parseToCalendar(String dateStr) {
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern_1, Locale.CHINA);
             Calendar calendar = Calendar.getInstance();
@@ -45,6 +45,23 @@ public class TimeUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 返回时间戳
+     *
+     * @param dateStr yyyy-MM-dd
+     * @return 时间戳,秒
+     */
+    public static long parseToTimestamp(String dateStr) {
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern_1, Locale.CHINA);
+            Date date = simpleDateFormat.parse(dateStr);
+            return date.getTime() / 1000;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public static int getCurrentYear() {

@@ -26,23 +26,36 @@ public class DBOperation {
         dbManager = x.getDb(daoConfig);
     }
 
-    public static void saveOrUpdate(Object object) {
+    public static <T> T findById(Class<T> entityType, Object idValue) {
+        try {
+            return dbManager.findById(entityType, idValue);
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static boolean saveOrUpdate(Object object) {
         try {
             dbManager.saveOrUpdate(object);
+            return true;
         } catch (DbException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public static void deleteById(Class<?> entityType, Object idValue) {
+    public static boolean deleteById(Class<?> entityType, Object idValue) {
         try {
             dbManager.deleteById(entityType, idValue);
+            return true;
         } catch (DbException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public static long count(Class entityType){
+    public static long count(Class entityType) {
         try {
             return dbManager.selector(entityType).count();
         } catch (DbException e) {
@@ -53,13 +66,19 @@ public class DBOperation {
 
     public static <T> List<T> findAll(Class<T> entityType, DBPage dbPage) {
         try {
-            int offset = (dbPage.getPageNo()-1) * dbPage.getPageSize();
-            Selector<T> selector = dbManager.selector(entityType).offset(offset).limit(dbPage.getPageSize());
-            if (!TextUtils.isEmpty(dbPage.getColumnName())) {
-                selector.orderBy(dbPage.getColumnName(), dbPage.getDesc());
-            }
+            int offset = (dbPage.getPageNo() - 1) * dbPage.getPageSize();
+            Selector<T> selector = dbManager.selector(entityType).where(dbPage.getWhereBuilder());
+
+            //查询总行数
             long rows = selector.count();
             dbPage.setRows(rows);
+
+            //分页查询
+            selector.offset(offset).limit(dbPage.getPageSize());
+            if (!TextUtils.isEmpty(dbPage.getColumnName())) {//排序
+                selector.orderBy(dbPage.getColumnName(), dbPage.getDesc());
+            }
+
             return selector.findAll();
         } catch (DbException e) {
             e.printStackTrace();

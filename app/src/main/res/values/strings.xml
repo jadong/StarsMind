@@ -6,8 +6,9 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="txt_loading">加载中&#8230;</string>
-    <string name="txt_load_end">加载完成</string>
+    <string name="txt_load_end">已显示全部</string>
     <string name="txt_load_error">加载失败,请点击重试</string>
+    <string name="txt_load_no_data">暂无数据</string>
     <string name="txt_todo_event">待办事件</string>
     <string name="txt_reminder_time">提醒时间</string>
     <string name="txt_confirm">确定</string>

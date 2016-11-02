@@ -14,10 +14,13 @@
     </style>
 
     <!-- 启动页面样式 -->
-    <style name="AppTheme.Start" parent = "AppTheme">
-        <item name="android:windowBackground">@color/transparent</item>
+    <style name="AppTheme.Start" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/girl_a</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!--透明属性-->
+        <item name="android:windowIsTranslucent">false</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -25,7 +28,7 @@
     </style>
 
     <!-- Toolbar popup主题 -->
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="ThemeSwipeBack" parent="Theme.Swipe.Back">
         <!-- toolbar（actionbar）颜色 -->

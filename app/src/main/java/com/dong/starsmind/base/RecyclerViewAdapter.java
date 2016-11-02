@@ -12,7 +12,8 @@ import java.util.List;
  */
 public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<T> dataList;
+    protected static final int ITEM_TYPE_FOOTER = 1;
+    protected List<T> dataList;
     protected Context context;
     protected LayoutInflater layoutInflater;
 
@@ -24,7 +25,7 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter<Recycl
 
     public void setData(List<T> newList) {
         this.dataList.clear();
-        this.dataList.addAll(newList);
+        addData(newList);
     }
 
     public void addData(List<T> newList) {
