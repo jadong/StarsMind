@@ -18,6 +18,7 @@ import com.dong.starsmind.todo.presenter.AddToDoPresenter;
 import com.dong.starsmind.todo.presenter.UpdateToDoPresenter;
 import com.dong.starsmind.todo.view.AddTodoView;
 import com.dong.starsmind.todo.view.UpdateTodoView;
+import com.dong.starsmind.utils.AppUtils;
 import com.dong.starsmind.utils.TimeUtils;
 import com.dong.starsmind.widgets.TimePickerPopupWindow;
 
@@ -92,6 +93,9 @@ public class AddToDoActivity extends BaseActivity implements UpdateTodoView, Add
 
     public static void startActivity(Context context, Integer todoId) {
         if (context == null) {
+            return;
+        }
+        if (AppUtils.isFastMultipleClick()) {
             return;
         }
         Intent intent = new Intent(context, AddToDoActivity.class);

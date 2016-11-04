@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
-import com.dong.starsmind.todo.viewholder.FooterViewHolder;
+import com.dong.starsmind.common.viewholder.FooterViewHolder;
 
 /**
  * Created by zengwendong on 16/11/2.

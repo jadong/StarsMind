@@ -1,4 +1,4 @@
-package com.dong.starsmind.todo.viewholder;
+package com.dong.starsmind.common.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

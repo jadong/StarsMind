@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.dong.starsmind.base;
+package com.dong.starsmind.widgets;
 
 import android.app.Activity;
 import android.content.Context;

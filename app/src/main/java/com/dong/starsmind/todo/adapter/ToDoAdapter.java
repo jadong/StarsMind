@@ -13,7 +13,7 @@ import com.dong.starsmind.listener.ReloadListener;
 import com.dong.starsmind.todo.entity.TODO;
 import com.dong.starsmind.todo.presenter.DeleteToDoPresenter;
 import com.dong.starsmind.todo.view.TodoView;
-import com.dong.starsmind.todo.viewholder.FooterViewHolder;
+import com.dong.starsmind.common.viewholder.FooterViewHolder;
 import com.dong.starsmind.todo.viewholder.ToDoViewHolder;
 
 import java.util.Collections;

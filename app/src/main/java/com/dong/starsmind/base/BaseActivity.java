@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.dong.starsmind.R;
+import com.dong.starsmind.widgets.SwipeBackLayout;
 
 /**
  * Created by zengwendong on 16/7/20.
@@ -24,7 +25,6 @@ public abstract class BaseActivity extends SwipeBackActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            toolbar.setTitle(getToolBarTitle());
             toolbar.setNavigationIcon(R.mipmap.ic_back);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
@@ -36,6 +36,14 @@ public abstract class BaseActivity extends SwipeBackActivity {
 
         initView();
 
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        if (toolbar != null) {
+            toolbar.setTitle(getToolBarTitle());
+        }
     }
 
     /**

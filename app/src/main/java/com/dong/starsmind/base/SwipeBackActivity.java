@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
 import com.dong.starsmind.R;
+import com.dong.starsmind.widgets.SwipeBackLayout;
 
 
 /**

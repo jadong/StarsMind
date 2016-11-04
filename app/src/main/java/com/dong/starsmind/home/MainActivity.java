@@ -1,20 +1,21 @@
-package com.dong.starsmind.todo.activity;
+package com.dong.starsmind.home;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.dong.starsmind.R;
 import com.dong.starsmind.base.BaseActivity;
@@ -22,15 +23,17 @@ import com.dong.starsmind.constant.AppConstant;
 import com.dong.starsmind.constant.RequestCode;
 import com.dong.starsmind.db.DBPage;
 import com.dong.starsmind.helper.ItemTouchHelperCallback;
+import com.dong.starsmind.todo.activity.AddToDoActivity;
 import com.dong.starsmind.todo.adapter.ToDoAdapter;
 import com.dong.starsmind.todo.entity.TODO;
 import com.dong.starsmind.todo.presenter.ToDoListPresenter;
-import com.dong.starsmind.todo.view.ToDoListView;
+import com.dong.starsmind.common.view.LoadListView;
+import com.dong.starsmind.utils.AppUtils;
 import com.dong.starsmind.widgets.LoadMoreRecyclerView;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, ToDoListView {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, LoadListView<TODO> {
 
-    private NavigationView navigationView;
+    private LinearLayout ll_left_menu;
     private DrawerLayout drawerLayout;
     private FloatingActionButton fab_add;
     private LoadMoreRecyclerView rv_todo_list;
@@ -40,6 +43,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private ToDoListPresenter toDoListPresenter;
     private int pageNo = 1;
+
+    /*static {
+        //支持Vector资源
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }*/
 
     @Override
     protected boolean getEnableSwipeBack() {
@@ -58,7 +66,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected void initView() {
-        toDoListPresenter = new ToDoListPresenter(this);
+        ll_left_menu = (LinearLayout) findViewById(R.id.ll_left_menu);
+        int screen_width = AppUtils.getScreenWidth();
+        DrawerLayout.LayoutParams layoutParams = (DrawerLayout.LayoutParams) ll_left_menu.getLayoutParams();
+        layoutParams.width = (int) (screen_width * 0.7);
+        ll_left_menu.setLayoutParams(layoutParams);
+
         fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
         fab_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +81,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 AddToDoActivity.startActivity(MainActivity.this, null);
             }
         });
+        fab_add.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#3F51B5")));
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerLayout.setScrimColor(Color.TRANSPARENT);// 此处屏蔽Android系统提供的默认渐变过渡灰黑
@@ -75,14 +89,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         //toggle.setHomeAsUpIndicator(0);//修改默认图标
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        if (navigationView != null) {
-            navigationView.setNavigationItemSelectedListener(this);
-            //设置MenuItem的字体颜色
-            ColorStateList csl= getResources().getColorStateList(R.color.left_menu_item_color);
-            navigationView.setItemTextColor(csl);
-        }
 
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         //固定recyclerview大小
@@ -93,6 +99,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setListener();
         setAdapter();
 
+        toDoListPresenter = new ToDoListPresenter(this);
         loadData();
     }
 

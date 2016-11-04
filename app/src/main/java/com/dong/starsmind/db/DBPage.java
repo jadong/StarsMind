@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class DBPage<T> {
 
-    private int pageNo;
+    private int pageNo = 1;
     private int pageSize = 10;
     private long rows;//总行数
     private String columnName;

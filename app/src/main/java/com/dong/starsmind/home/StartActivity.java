@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.dong.starsmind.R;
-import com.dong.starsmind.todo.activity.MainActivity;
 
 /**
  * Created by zengwendong on 16/11/2.
@@ -24,6 +23,6 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(new Intent(StartActivity.this, MainActivity.class));
                 finish();
             }
-        },1000);
+        },500);
     }
 }

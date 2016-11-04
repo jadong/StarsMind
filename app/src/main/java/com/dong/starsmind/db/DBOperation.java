@@ -64,7 +64,7 @@ public class DBOperation {
         return 0;
     }
 
-    public static <T> List<T> findAll(Class<T> entityType, DBPage dbPage) {
+    public static <T> DBPage<T> findAll(Class<T> entityType, DBPage<T> dbPage) {
         try {
             int offset = (dbPage.getPageNo() - 1) * dbPage.getPageSize();
             Selector<T> selector = dbManager.selector(entityType).where(dbPage.getWhereBuilder());
@@ -78,12 +78,12 @@ public class DBOperation {
             if (!TextUtils.isEmpty(dbPage.getColumnName())) {//排序
                 selector.orderBy(dbPage.getColumnName(), dbPage.getDesc());
             }
-
-            return selector.findAll();
+            dbPage.setDataList(selector.findAll());
+            return dbPage;
         } catch (DbException e) {
             e.printStackTrace();
         }
-        return new ArrayList<>();
+        return dbPage;
     }
 
 }

@@ -37,7 +37,7 @@ public class LoadMoreRecyclerView extends RecyclerView {
     }
 
     public LoadMoreRecyclerView(Context context, AttributeSet attrs) {
-        this(context, attrs, -1);
+        this(context, attrs, 0);
     }
 
     public LoadMoreRecyclerView(Context context, AttributeSet attrs, int defStyle) {

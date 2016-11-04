@@ -34,14 +34,18 @@
         </activity>
 
         <activity
-            android:name=".todo.activity.MainActivity"
+            android:name=".home.MainActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".todo.activity.AddToDoActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTop"
             android:theme="@style/ThemeSwipeBack" />
 
+        <activity
+            android:name=".bookshelf.activity.ReadActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

@@ -23,6 +23,14 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter<Recycl
         dataList = new ArrayList<>();
     }
 
+    public Context getContext() {
+        return context;
+    }
+
+    public LayoutInflater getLayoutInflater() {
+        return layoutInflater;
+    }
+
     public void setData(List<T> newList) {
         this.dataList.clear();
         addData(newList);
@@ -44,6 +52,11 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter<Recycl
             return dataList.get(position);
         }
         return null;
+    }
+
+    @Override
+    public int getItemCount() {
+        return getDataCount();
     }
 
 }
