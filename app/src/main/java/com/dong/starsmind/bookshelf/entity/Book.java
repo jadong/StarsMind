@@ -12,11 +12,26 @@ public class Book {
     @Column(name = "id",isId = true)
     private int id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "bookId")
+    private String bookId;
+
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "author")
+    private String author;
+
+    @Column(name = "cover")
+    private String cover;//封面
+
+    @Column(name = "description")
+    private String description;//简介
+
+    @Column(name = "category")
+    private String category;//类别
 
     @Column(name = "path")
-    private String path;
+    private String path;//本地书路径
 
     @Column(name = "read_progress")
     private int readProgress;
@@ -29,12 +44,12 @@ public class Book {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getPath() {
@@ -51,5 +66,45 @@ public class Book {
 
     public void setReadProgress(int readProgress) {
         this.readProgress = readProgress;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
     }
 }

@@ -44,6 +44,11 @@
             android:theme="@style/ThemeSwipeBack" />
 
         <activity
+            android:name=".bookshelf.activity.BookshelfActivity"
+            android:theme="@style/ThemeSwipeBack"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".bookshelf.activity.ReadActivity"
             android:screenOrientation="portrait" />
 

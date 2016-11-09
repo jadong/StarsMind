@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dong.starsmind.R;
+import com.dong.starsmind.bookshelf.activity.BookshelfActivity;
 import com.dong.starsmind.bookshelf.activity.ReadActivity;
 
 /**
@@ -31,7 +32,7 @@ public class MainLeftFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.card_view_bookshelf:
-                ReadActivity.startActivity(getActivity());
+                BookshelfActivity.startActivity(getActivity());
                 break;
             default:
                 break;

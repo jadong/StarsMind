@@ -21,7 +21,7 @@ public class BookshelfAdapter extends RecyclerViewAdapter<Book> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = getLayoutInflater().inflate(R.layout.layout_book_item, null);
+        View view = getLayoutInflater().inflate(R.layout.layout_book_item, parent, false);
         return new BookViewHolder(view);
     }
 

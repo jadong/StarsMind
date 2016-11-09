@@ -10,6 +10,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 
+import com.dong.starsmind.R;
+import com.dong.starsmind.utils.AppUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -26,7 +29,7 @@ public class BookPageFactory {
 	private int m_mbBufLen = 0;
 	private int m_mbBufBegin = 0;
 	private int m_mbBufEnd = 0;
-	private String m_strCharsetName = "GBK";
+	private String m_strCharsetName = "UTF-8";
 	private Bitmap m_book_bg = null;
 	private int mWidth;
 	private int mHeight;
@@ -49,7 +52,7 @@ public class BookPageFactory {
 	private Paint mPaint;
 
 	public BookPageFactory(int w, int h) {
-		// TODO Auto-generated constructor stub
+		this.m_fontSize = (int) AppUtils.getDimension(R.dimen.text_size_18);
 		mWidth = w;
 		mHeight = h;
 		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -61,14 +64,13 @@ public class BookPageFactory {
 		mLineCount = (int) (mVisibleHeight / m_fontSize);
 	}
 
-	public void openbook(String strFilePath) throws IOException {
+	public void openBook(String strFilePath) throws IOException {
 		book_file = new File(strFilePath);
 		long lLen = book_file.length();
 		m_mbBufLen = (int) lLen;
 		m_mbBuf = new RandomAccessFile(book_file, "r").getChannel().map(
 				FileChannel.MapMode.READ_ONLY, 0, lLen);
 	}
-	
 
 	protected byte[] readParagraphBack(int nFromPos) {
 		int nEnd = nFromPos;
@@ -158,14 +160,13 @@ public class BookPageFactory {
 
 	protected Vector<String> pageDown() {
 		String strParagraph = "";
-		Vector<String> lines = new Vector<String>();
+		Vector<String> lines = new Vector<>();
 		while (lines.size() < mLineCount && m_mbBufEnd < m_mbBufLen) {
-			byte[] paraBuf = readParagraphForward(m_mbBufEnd); // ��ȡһ������
+			byte[] paraBuf = readParagraphForward(m_mbBufEnd);
 			m_mbBufEnd += paraBuf.length;
 			try {
 				strParagraph = new String(paraBuf, m_strCharsetName);
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			String strReturn = "";
@@ -194,7 +195,6 @@ public class BookPageFactory {
 					m_mbBufEnd -= (strParagraph + strReturn)
 							.getBytes(m_strCharsetName).length;
 				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -205,16 +205,15 @@ public class BookPageFactory {
 	protected void pageUp() {
 		if (m_mbBufBegin < 0)
 			m_mbBufBegin = 0;
-		Vector<String> lines = new Vector<String>();
+		Vector<String> lines = new Vector<>();
 		String strParagraph = "";
 		while (lines.size() < mLineCount && m_mbBufBegin > 0) {
-			Vector<String> paraLines = new Vector<String>();
+			Vector<String> paraLines = new Vector<>();
 			byte[] paraBuf = readParagraphBack(m_mbBufBegin);
 			m_mbBufBegin -= paraBuf.length;
 			try {
 				strParagraph = new String(paraBuf, m_strCharsetName);
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			strParagraph = strParagraph.replaceAll("\r\n", "");
@@ -236,7 +235,6 @@ public class BookPageFactory {
 				m_mbBufBegin += lines.get(0).getBytes(m_strCharsetName).length;
 				lines.remove(0);
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

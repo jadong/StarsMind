@@ -15,6 +15,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Scroller;
 
+import com.dong.starsmind.utils.AppUtils;
+
 public class BookPageWidget extends View {
 
 	private int mWidth = 480;
@@ -47,7 +49,7 @@ public class BookPageWidget extends View {
 	float[] mMatrixArray = { 0, 0, 0, 0, 0, 0, 0, 0, 1.0f };
 
 	boolean mIsRTandLB;
-	float mMaxLength = (float) Math.hypot(mWidth, mHeight);
+	float mMaxLength;
 	int[] mBackShadowColors;
 	int[] mFrontShadowColors;
 	GradientDrawable mBackShadowDrawableLR;
@@ -69,6 +71,9 @@ public class BookPageWidget extends View {
 		// TODO Auto-generated constructor stub
 		mPath0 = new Path();
 		mPath1 = new Path();
+		this.mWidth = AppUtils.getScreenWidth();
+		this.mHeight = AppUtils.getScreenHeight();
+		mMaxLength = (float) Math.hypot(mWidth, mHeight);
 		createDrawable();
 
 		mPaint = new Paint();
@@ -131,7 +136,6 @@ public class BookPageWidget extends View {
 
 	public PointF getCross(PointF P1, PointF P2, PointF P3, PointF P4) {
 		PointF CrossP = new PointF();
-		// ��Ԫ����ͨʽ�� y=ax+b
 		float a1 = (P2.y - P1.y) / (P2.x - P1.x);
 		float b1 = ((P1.x * P2.y) - (P2.x * P1.y)) / (P1.x - P2.x);
 

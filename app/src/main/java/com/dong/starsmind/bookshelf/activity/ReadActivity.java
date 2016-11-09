@@ -3,9 +3,10 @@ package com.dong.starsmind.bookshelf.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -13,9 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.dong.starsmind.R;
 import com.dong.starsmind.utils.AppUtils;
-import com.dong.starsmind.utils.FileUtils;
 import com.dong.starsmind.widgets.BookPageFactory;
 import com.dong.starsmind.widgets.BookPageWidget;
 
@@ -34,12 +33,8 @@ public class ReadActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FileUtils fileUtils = new FileUtils();
-        String text = getResources().getString(R.string.text);
-        fileUtils.write2SDFromInput("", "test.txt", text);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         int screen_width = AppUtils.getScreenWidth();
         int screen_height = AppUtils.getScreenHeight();
@@ -53,10 +48,11 @@ public class ReadActivity extends AppCompatActivity {
         mCurPageCanvas = new Canvas(mCurPageBitmap);
         mNextPageCanvas = new Canvas(mNextPageBitmap);
         bookPageFactory = new BookPageFactory(screen_width, screen_height);
-        bookPageFactory.setBgBitmap(BitmapFactory.decodeResource(this.getResources(), R.mipmap.book_bg));
+        //bookPageFactory.setBgBitmap(BitmapFactory.decodeResource(this.getResources(), R.mipmap.book_bg));
 
+        String path = getIntent().getStringExtra("path");
         try {
-            bookPageFactory.openbook("/sdcard/test.txt");
+            bookPageFactory.openBook(path);
             bookPageFactory.onDraw(mCurPageCanvas);
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -66,7 +62,7 @@ public class ReadActivity extends AppCompatActivity {
         mPageWidget.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent e) {
-                boolean ret = false;
+                boolean ret;
                 if (v == mPageWidget) {
                     if (e.getAction() == MotionEvent.ACTION_DOWN) {
                         mPageWidget.abortAnimation();
@@ -79,7 +75,9 @@ public class ReadActivity extends AppCompatActivity {
                             } catch (IOException e1) {
                                 e1.printStackTrace();
                             }
-                            if (bookPageFactory.isfirstPage()) return false;
+                            if (bookPageFactory.isfirstPage()) {
+                                return false;
+                            }
                             bookPageFactory.onDraw(mNextPageCanvas);
                         } else {
                             try {
@@ -87,7 +85,9 @@ public class ReadActivity extends AppCompatActivity {
                             } catch (IOException e1) {
                                 e1.printStackTrace();
                             }
-                            if (bookPageFactory.islastPage()) return false;
+                            if (bookPageFactory.islastPage()) {
+                                return false;
+                            }
                             bookPageFactory.onDraw(mNextPageCanvas);
                         }
                         mPageWidget.setBitmaps(mCurPageBitmap, mNextPageBitmap);
@@ -101,7 +101,16 @@ public class ReadActivity extends AppCompatActivity {
         });
     }
 
-    public static void startActivity(Context context) {
-        context.startActivity(new Intent(context, ReadActivity.class));
+    private Handler read_handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+
+        }
+    };
+
+    public static void startActivity(Context context, String path) {
+        Intent intent = new Intent(context, ReadActivity.class);
+        intent.putExtra("path", path);
+        context.startActivity(intent);
     }
 }

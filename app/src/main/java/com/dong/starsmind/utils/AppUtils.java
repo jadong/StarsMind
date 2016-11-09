@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.DimenRes;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -75,6 +76,10 @@ public class AppUtils {
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         return dm.heightPixels;
+    }
+
+    public static float getDimension(@DimenRes int id){
+       return StarsApplication.appContext.getResources().getDimension(id);
     }
 
     public static ArrayList<String> getGalleryPhotos(Activity act) {

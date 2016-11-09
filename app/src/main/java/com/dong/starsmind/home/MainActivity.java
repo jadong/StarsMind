@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -81,7 +82,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 AddToDoActivity.startActivity(MainActivity.this, null);
             }
         });
-        fab_add.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#3F51B5")));
+        fab_add.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this,R.color.colorPrimary)));
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerLayout.setScrimColor(Color.TRANSPARENT);// 此处屏蔽Android系统提供的默认渐变过渡灰黑
