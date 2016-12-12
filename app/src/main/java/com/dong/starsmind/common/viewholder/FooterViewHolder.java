@@ -1,5 +1,6 @@
 package com.dong.starsmind.common.viewholder;
 
+import android.support.annotation.IntDef;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.dong.starsmind.R;
-import com.dong.starsmind.constant.AppConstant;
 import com.dong.starsmind.listener.ReloadListener;
 
 /**
@@ -18,9 +18,19 @@ public class FooterViewHolder extends RecyclerView.ViewHolder {
 
     private TextView tv_tip;//提示文案
     private ProgressBar refresh_progress;
+    private ReloadListener reloadListener;
+
     private int loadStatus = -1;
 
-    private ReloadListener reloadListener;
+    public final static int STATUS_LOADING = 1;//加载中
+    public final static int STATUS_LOAD_END = 2;//加载完成
+    public final static int STATUS_LOAD_ERROR = 3;//加载失败
+    public final static int STATUS_LOAD_NO_DATA = 4;//加载无数据
+    public final static int STATUS_LOAD_HIDE = 5;//隐藏加载条
+
+    @IntDef({STATUS_LOADING, STATUS_LOAD_END, STATUS_LOAD_ERROR, STATUS_LOAD_NO_DATA, STATUS_LOAD_HIDE})
+    public @interface LoadStatus {
+    }
 
     public FooterViewHolder(LayoutInflater inflater, ViewGroup parent) {
         this(inflater.inflate(R.layout.layout_load_more, parent, false));
@@ -40,17 +50,16 @@ public class FooterViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setLoadStatus(@AppConstant.LoadStatus int loadStatus){
-        this.loadStatus = loadStatus;
-        if (loadStatus == AppConstant.STATUS_LOADING) {
+    public void setLoadStatus(@LoadStatus int loadStatus) {
+        if (loadStatus == STATUS_LOADING) {
             loading();
-        } else if (loadStatus == AppConstant.STATUS_LOAD_END) {
+        } else if (loadStatus == STATUS_LOAD_END) {
             loadEnd();
-        } else if (loadStatus == AppConstant.STATUS_LOAD_ERROR) {
+        } else if (loadStatus == STATUS_LOAD_ERROR) {
             loadError();
-        } else if (loadStatus == AppConstant.STATUS_LOAD_NO_DATA) {
+        } else if (loadStatus == STATUS_LOAD_NO_DATA) {
             loadNoData();
-        }else {
+        } else {
             hideFooterView();
         }
     }
@@ -79,14 +88,14 @@ public class FooterViewHolder extends RecyclerView.ViewHolder {
         refresh_progress.setVisibility(View.GONE);
     }
 
-    public void hideFooterView(){
+    public void hideFooterView() {
         itemView.setVisibility(View.GONE);
     }
 
     /**
      * 设置重新加载监听
      */
-    public void setReloadListener(ReloadListener reloadListener){
+    public void setReloadListener(ReloadListener reloadListener) {
         this.reloadListener = reloadListener;
     }
 

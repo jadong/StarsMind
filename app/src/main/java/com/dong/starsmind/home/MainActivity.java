@@ -1,49 +1,39 @@
 package com.dong.starsmind.home;
 
-import android.content.Intent;
-import android.content.res.ColorStateList;
+import android.content.Context;
 import android.graphics.Color;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.dong.starsmind.R;
 import com.dong.starsmind.base.BaseActivity;
-import com.dong.starsmind.constant.AppConstant;
-import com.dong.starsmind.constant.RequestCode;
-import com.dong.starsmind.db.DBPage;
-import com.dong.starsmind.helper.ItemTouchHelperCallback;
-import com.dong.starsmind.todo.activity.AddToDoActivity;
-import com.dong.starsmind.todo.adapter.ToDoAdapter;
-import com.dong.starsmind.todo.entity.TODO;
-import com.dong.starsmind.todo.presenter.ToDoListPresenter;
-import com.dong.starsmind.common.view.LoadListView;
+import com.dong.starsmind.joke.adapter.JokeViewPageAdapter;
 import com.dong.starsmind.utils.AppUtils;
-import com.dong.starsmind.widgets.LoadMoreRecyclerView;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, LoadListView<TODO> {
+import net.lucode.hackware.magicindicator.MagicIndicator;
+import net.lucode.hackware.magicindicator.ViewPagerHelper;
+import net.lucode.hackware.magicindicator.buildins.UIUtil;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ClipPagerTitleView;
 
-    private LinearLayout ll_left_menu;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends BaseActivity {
+
     private DrawerLayout drawerLayout;
-    private FloatingActionButton fab_add;
-    private LoadMoreRecyclerView rv_todo_list;
-    private SwipeRefreshLayout swipeRefreshLayout;
-
-    private ToDoAdapter toDoAdapter;
-
-    private ToDoListPresenter toDoListPresenter;
-    private int pageNo = 1;
+    private ViewPager viewPager;
+    private MagicIndicator magicIndicator;
+    private List<String> pageTitleList;
 
     /*static {
         //支持Vector资源
@@ -62,28 +52,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected String getToolBarTitle() {
-        return getString(R.string.home_title);
+        return getString(R.string.joke_title);
     }
 
     @Override
     protected void initView() {
-        ll_left_menu = (LinearLayout) findViewById(R.id.ll_left_menu);
+        magicIndicator = (MagicIndicator) findViewById(R.id.magic_indicator);
+        LinearLayout  ll_left_menu = (LinearLayout) findViewById(R.id.ll_left_menu);
         int screen_width = AppUtils.getScreenWidth();
         DrawerLayout.LayoutParams layoutParams = (DrawerLayout.LayoutParams) ll_left_menu.getLayoutParams();
         layoutParams.width = (int) (screen_width * 0.7);
         ll_left_menu.setLayoutParams(layoutParams);
 
-        fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
-        fab_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-                AddToDoActivity.startActivity(MainActivity.this, null);
-            }
-        });
-        fab_add.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this,R.color.colorPrimary)));
-
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerLayout.setScrimColor(Color.TRANSPARENT);// 此处屏蔽Android系统提供的默认渐变过渡灰黑
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -91,44 +72,57 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        //固定recyclerview大小
-        rv_todo_list = (LoadMoreRecyclerView) findViewById(R.id.rv_todo_list);
-        rv_todo_list.setLayoutManager(new LinearLayoutManager(this));
-        rv_todo_list.setHasFixedSize(true);
-
+        viewPager.setAdapter(new JokeViewPageAdapter(getSupportFragmentManager()));
+        initMagicIndicator();
         setListener();
-        setAdapter();
-
-        toDoListPresenter = new ToDoListPresenter(this);
-        loadData();
     }
 
-    private void setAdapter() {
-        toDoAdapter = new ToDoAdapter(this);
-        rv_todo_list.setAdapter(toDoAdapter);
+    private void initMagicIndicator() {
+        pageTitleList = new ArrayList<>();
+        pageTitleList.add("笑  话");
+        pageTitleList.add("趣  图");
+        magicIndicator.setBackgroundResource(R.drawable.indicator_round_bg);
+        CommonNavigator commonNavigator = new CommonNavigator(this);
+        commonNavigator.setAdapter(new CommonNavigatorAdapter() {
+            @Override
+            public int getCount() {
+                return pageTitleList.size();
+            }
 
-        //关联ItemTouchHelper和RecyclerView
-        ItemTouchHelper.Callback callback = new ItemTouchHelperCallback(toDoAdapter);
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
-        itemTouchHelper.attachToRecyclerView(rv_todo_list);
+            @Override
+            public IPagerTitleView getTitleView(Context context, final int index) {
+                ClipPagerTitleView clipPagerTitleView = new ClipPagerTitleView(context);
+                clipPagerTitleView.setText(pageTitleList.get(index));
+                clipPagerTitleView.setTextColor(getResources().getColor(R.color.colorAccent));
+                clipPagerTitleView.setClipColor(Color.WHITE);
+                clipPagerTitleView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        viewPager.setCurrentItem(index);
+                    }
+                });
+                return clipPagerTitleView;
+            }
+
+            @Override
+            public IPagerIndicator getIndicator(Context context) {
+                LinePagerIndicator indicator = new LinePagerIndicator(context);
+                float navigatorHeight = context.getResources().getDimension(R.dimen.common_navigator_height);
+                float borderWidth = UIUtil.dip2px(context, 1);
+                float lineHeight = navigatorHeight - 2 * borderWidth;
+                indicator.setLineHeight(lineHeight);
+                indicator.setRoundRadius(lineHeight / 2);
+                indicator.setYOffset(borderWidth);
+                indicator.setColors(getResources().getColor(R.color.colorPrimary));
+                return indicator;
+            }
+        });
+        magicIndicator.setNavigator(commonNavigator);
+        ViewPagerHelper.bind(magicIndicator, viewPager);
     }
 
     private void setListener() {
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                pageNo = 1;
-                loadData();
-            }
-        });
-        rv_todo_list.setLoadMoreListener(new LoadMoreRecyclerView.LoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                pageNo++;
-                loadData();
-            }
-        });
+
 
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -156,6 +150,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
             @Override
             public void onDrawerOpened(View drawerView) {
+
             }
 
             @Override
@@ -166,18 +161,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     }
 
-    private void loadData() {
-        toDoListPresenter.loadToDoList(pageNo, -1);
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RequestCode.ADD_OR_UPDATE && resultCode == RESULT_OK) {
-            pageNo = 1;
-            loadData();
-        }
-    }
 
     @Override
     public void onBackPressed() {
@@ -188,48 +172,4 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    @Override
-    public void refreshData(DBPage<TODO> dbPage) {
-        swipeRefreshLayout.setRefreshing(false);
-        if (dbPage.hasNextPage()) {
-            toDoAdapter.setFooterViewStatus(AppConstant.STATUS_LOADING);
-        } else {
-            toDoAdapter.setFooterViewStatus(AppConstant.STATUS_LOAD_END);
-        }
-        rv_todo_list.notifyMoreFinish(dbPage.hasNextPage());
-        if (dbPage.getPageNo() == 1) {
-            if (dbPage.getDataList() == null) {
-                toDoAdapter.setFooterViewStatus(AppConstant.STATUS_LOAD_NO_DATA);
-                toDoAdapter.notifyFooterView();
-            } else {
-                toDoAdapter.setData(dbPage.getDataList());
-            }
-        } else {
-            toDoAdapter.addData(dbPage.getDataList());
-        }
-    }
 }

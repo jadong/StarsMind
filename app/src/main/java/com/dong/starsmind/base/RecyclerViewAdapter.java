@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 
+import com.dong.starsmind.common.viewholder.FooterViewHolder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +14,13 @@ import java.util.List;
  */
 public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    protected static final int ITEM_TYPE_FOOTER = 1;
+    public static final int ITEM_TYPE_FOOTER = 99;
     protected List<T> dataList;
     protected Context context;
     protected LayoutInflater layoutInflater;
+
+    //加载状态
+    protected int loadStatus = FooterViewHolder.STATUS_LOADING;
 
     public RecyclerViewAdapter(Context context) {
         this.context = context;
@@ -43,6 +48,25 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter<Recycl
         }
     }
 
+    public void clearData() {
+        this.dataList.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addDataToFirst(List<T> newList) {
+        if (newList != null) {
+            this.dataList.addAll(0, newList);
+            notifyDataSetChanged();
+        }
+    }
+
+    public void addOneData(T data) {
+        if (data != null) {
+            this.dataList.add(data);
+            notifyDataSetChanged();
+        }
+    }
+
     public int getDataCount() {
         return dataList == null ? 0 : dataList.size();
     }
@@ -59,4 +83,12 @@ public abstract class RecyclerViewAdapter<T> extends RecyclerView.Adapter<Recycl
         return getDataCount();
     }
 
+    /**
+     * 设置脚布局的加载状态 FooterViewHolder.STATUS
+     *
+     * @param loadStatus FooterViewHolder.STATUS
+     */
+    public void setFooterViewStatus(@FooterViewHolder.LoadStatus int loadStatus) {
+        this.loadStatus = loadStatus;
+    }
 }

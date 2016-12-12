@@ -151,6 +151,11 @@
     <color name="navy">#000080</color><!--海军色 -->
     <color name="black">#000000</color><!--黑色 -->
     <color name="black_p50">#7f000000</color>
+    <color name="color_666">#666666</color>
+    <color name="color_eee">#eeeeee</color>
+
+    <!--主背景色-->
+    <color name="main_bg">@color/color_eee</color>
 
     <color name="main_font_color">@color/grey</color>
     <color name="left_menu_item_color">@drawable/navigation_menu_item_color</color>

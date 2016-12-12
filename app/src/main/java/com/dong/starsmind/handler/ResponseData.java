@@ -1,6 +1,6 @@
 package com.dong.starsmind.handler;
 
-import com.dong.starsmind.constant.AppConstant;
+import com.dong.starsmind.constant.AppConstants;
 
 /**
  * Created by zengwendong on 16/10/30.
@@ -33,14 +33,14 @@ public class ResponseData {
     }
 
     public void setHandlerSuccess(){
-        setStatusCode(AppConstant.STATUS_CODE_0);
+        setStatusCode(AppConstants.STATUS_CODE_0);
     }
 
     public void setHandlerFailed(){
-        setStatusCode(AppConstant.STATUS_CODE_1);
+        setStatusCode(AppConstants.STATUS_CODE_1);
     }
 
-    private void setStatusCode(@AppConstant.StatusCode int statusCode) {
+    private void setStatusCode(@AppConstants.StatusCode int statusCode) {
         this.statusCode = statusCode;
     }
 }

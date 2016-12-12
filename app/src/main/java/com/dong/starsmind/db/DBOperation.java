@@ -55,6 +55,16 @@ public class DBOperation {
         return false;
     }
 
+    public static boolean deleteAll(Class<?> entityType) {
+        try {
+            dbManager.delete(entityType);
+            return true;
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static long count(Class entityType) {
         try {
             return dbManager.selector(entityType).count();
@@ -70,7 +80,7 @@ public class DBOperation {
             Selector<T> selector = dbManager.selector(entityType).where(dbPage.getWhereBuilder());
 
             //查询总行数
-            long rows = selector.count();
+            long rows = selector.count();//(5+1)-5=1
             dbPage.setRows(rows);
 
             //分页查询

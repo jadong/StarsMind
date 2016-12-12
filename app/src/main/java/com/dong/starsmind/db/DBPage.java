@@ -17,6 +17,13 @@ public class DBPage<T> {
 
     private WhereBuilder whereBuilder;
 
+    public DBPage() {
+    }
+
+    public DBPage(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
     private List<T> dataList;//每页的数据集
 
     public List<T> getDataList() {
@@ -41,6 +48,11 @@ public class DBPage<T> {
 
     public void setPageNo(int pageNo) {
         this.pageNo = pageNo;
+    }
+
+    public int getNextPageNo(){
+        this.pageNo++;
+        return pageNo;
     }
 
     public int getPageSize() {

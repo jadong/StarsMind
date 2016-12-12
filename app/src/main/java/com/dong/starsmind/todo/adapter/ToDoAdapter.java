@@ -7,13 +7,12 @@ import android.view.ViewGroup;
 
 import com.dong.starsmind.R;
 import com.dong.starsmind.base.RecyclerViewAdapter;
-import com.dong.starsmind.constant.AppConstant;
+import com.dong.starsmind.common.viewholder.FooterViewHolder;
 import com.dong.starsmind.helper.OnMoveAndSwipedListener;
 import com.dong.starsmind.listener.ReloadListener;
 import com.dong.starsmind.todo.entity.TODO;
 import com.dong.starsmind.todo.presenter.DeleteToDoPresenter;
 import com.dong.starsmind.todo.view.TodoView;
-import com.dong.starsmind.common.viewholder.FooterViewHolder;
 import com.dong.starsmind.todo.viewholder.ToDoViewHolder;
 
 import java.util.Collections;
@@ -25,9 +24,6 @@ public class ToDoAdapter extends RecyclerViewAdapter<TODO> implements ReloadList
 
     private static final int ITEM_TYPE_TODO = 2;
 
-    //加载状态
-    private int loadStatus = AppConstant.STATUS_LOADING;
-
     private DeleteToDoPresenter deleteToDoPresenter;
 
     public ToDoAdapter(Context context) {
@@ -35,14 +31,6 @@ public class ToDoAdapter extends RecyclerViewAdapter<TODO> implements ReloadList
         deleteToDoPresenter = new DeleteToDoPresenter(this);
     }
 
-    /**
-     * 设置脚布局的加载状态 AppConstant.STATUS
-     *
-     * @param loadStatus AppConstant.STATUS
-     */
-    public void setFooterViewStatus(@AppConstant.LoadStatus int loadStatus) {
-        this.loadStatus = loadStatus;
-    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -65,7 +53,11 @@ public class ToDoAdapter extends RecyclerViewAdapter<TODO> implements ReloadList
             toDoViewHolder.setData(todo);
         } else if (holder instanceof FooterViewHolder) {
             FooterViewHolder footerViewHolder = (FooterViewHolder) holder;
-            footerViewHolder.setLoadStatus(loadStatus);
+            if (getDataCount() == 0) {
+                footerViewHolder.setLoadStatus(FooterViewHolder.STATUS_LOAD_HIDE);
+            } else {
+                footerViewHolder.setLoadStatus(loadStatus);
+            }
             footerViewHolder.setReloadListener(this);//设置重新加载监听
         }
 

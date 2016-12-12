@@ -19,7 +19,7 @@
             android:id="@+id/iv_bottom"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@mipmap/ic_launcher" />
+            app:srcCompat="@drawable/ic_wb_sunny_black_24dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,6 +32,7 @@
     </LinearLayout>
 
     <android.support.v7.widget.CardView
+        android:id="@+id/card_view_event"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="30dp"
@@ -51,13 +52,13 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_camera" />
+                app:srcCompat="@drawable/ic_event_white_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Camera"
+                android:text="@string/event_title"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
@@ -72,6 +73,7 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
+        android:id="@+id/card_view_health"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
@@ -91,13 +93,13 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_gallery" />
+                app:srcCompat="@drawable/ic_menu_gallery" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Gallery"
+                android:text="@string/health_title"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
@@ -132,13 +134,54 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_slideshow" />
+                app:srcCompat="@drawable/ic_menu_slideshow" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="Bookshlef"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dp"
+            android:layout_gravity="bottom"
+            android:background="@color/deepskyblue"
+            android:visibility="gone" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view_send"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/transparent"
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_menu_send" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="无聊的对话"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
@@ -172,7 +215,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_share" />
+                app:srcCompat="@drawable/ic_menu_share" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -212,47 +255,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_send" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Send"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="0.2dp"
-            android:layout_gravity="bottom"
-            android:background="@color/deepskyblue"
-            android:visibility="gone" />
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/transparent"
-        app:cardElevation="0dp"
-        app:cardUseCompatPadding="false">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="5dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_menu_manage" />
+                app:srcCompat="@drawable/ic_menu_manage" />
 
             <TextView
                 android:layout_width="wrap_content"

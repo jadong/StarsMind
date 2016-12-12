@@ -1,8 +1,16 @@
 <resources>
     <string name="app_name">StarsMind</string>
-    <string name="home_title">事件记录</string>
+    <string name="event_title">事件记录</string>
     <string name="add_todo_title">新增事件</string>
     <string name="bookshelf_title">书架</string>
+    <string name="wxhot_title">微信热门</string>
+    <string name="health_title">生活健康</string>
+    <string name="joke_title">笑话大全</string>
+    <string name="search_title">搜索</string>
+    <string name="txt_refresh">刷新</string>
+    <string name="txt_pull_refresh">下拉刷新...</string>
+    <string name="txt_release_refresh">松开刷新...</string>
+    <string name="txt_refreshing">正在刷新...</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -15,144 +23,9 @@
     <string name="txt_confirm">确定</string>
     <string name="txt_cancel">取消</string>
 
-    <string name="text">This chapter introduced the Android platform and briefly touched on market positioning,
-including what Android is up against in the rapidly changing mobile marketplace.
-Inside two short years, the Android SDK has been announced, released, and
-updated no fewer than four times. And that’s just the software. Major device manufacturers
-have now signed on to the Android platform and have brought capable devices
-to market, including a privately labeled device from Google itself. Android’s future
-continues to brighten.
-In this chapter, we examined the Android stack and discussed its relationship with
-Linux and Java. With Linux at its core, Android is a formidable platform, especially
-for the mobile space where it’s initially targeted. Although Android development is
-done in the Java programming language, the runtime is executed in the Dalvik VM, as
-an alternative to the Java VM from Oracle. Regardless of the VM, Java coding skills are
-an important aspect of Android development.
-We also examined the Android SDK’s Intent class. The Intent is what makes
-Android tick. It’s responsible for how events flow and which code handles them. It
-provides a mechanism for delivering specific functionality to the platform, enabling
-third-party developers to deliver innovative solutions and products for Android. We
-introduced all the main application classes of Activity, Service, ContentProvider,
-and BroadcastReceiver, with a simple code snippet example for each. Each of these
-application classes use Intents in a slightly different manner, but the core facility of
-using Intents to control application behavior enables the innovative and flexible
-Android environment. Intents and their relationship with these application classes
-will be unpacked and unlocked as we progress through this book.
-The AndroidManifest.xml descriptor file ties all the details together for an
-Android application. It includes all the information necessary for the application to
-run, what Intents it can handle, and what permissions the application requires.
-Throughout this book, the AndroidManifest.xml file will be a familiar companion as
-we add and explain new elements.
-Finally, this chapter provided a taste of Android application development with a
-simple example tying a simple UI, an Intent, and Google Maps into one seamless and
-useful experience. This example is, of course, just scratching the surface of what
-Android can do. The next chapter takes a deeper look into the Android SDK so that
-you can learn more about the toolbox we’ll use to unlock Android.
 
-        CSDN知识库：你是如何与计算机结缘，踏上软件开发之路的，能否跟我们分享一下。
+    <string name="address_str">
+        北京:101010100朝阳:101010300顺义:101010400怀柔:101010500通州:101010600昌平:101010700延庆:101010800丰台:101010900石景山:101011000大兴:101011100房山:101011200密云:101011300门头沟:101011400平谷:101011500八达岭:101011600佛爷顶:101011700汤河口:101011800密云上甸子:101011900斋堂:101012000霞云岭:101012100北京城区:101012200海淀:101010200天津:101030100宝坻:101030300东丽:101030400西青:101030500北辰:101030600蓟县:101031400汉沽:101030800静海:101030900津南:101031000塘沽:101031100大港:101031200武清:101030200宁河:101030700上海:101020100宝山:101020300嘉定:101020500南汇:101020600浦东:101021300青浦:101020800松江:101020900奉贤:101021000崇明:101021100徐家汇:101021200闵行:101020200金山:101020700石家庄:101090101张家口:101090301承德:101090402唐山:101090501秦皇岛:101091101沧州:101090701衡水:101090801邢台:101090901邯郸:101091001保定:101090201廊坊:101090601郑州:101180101新乡:101180301许昌:101180401平顶山:101180501信阳:101180601南阳:101180701开封:101180801洛阳:101180901商丘:101181001焦作:101181101鹤壁:101181201濮阳:101181301周口:101181401漯河:101181501驻马店:101181601三门峡:101181701济源:101181801安阳:101180201合肥:101220101芜湖:101220301淮南:101220401马鞍山:101220501安庆:101220601宿州:101220701阜阳:101220801亳州:101220901黄山:101221001滁州:101221101淮北:101221201铜陵:101221301宣城:101221401六安:101221501巢湖:101221601池州:101221701蚌埠:101220201杭州:101210101舟山:101211101湖州:101210201嘉兴:101210301金华:101210901绍兴:101210501台州:101210601温州:101210701丽水:101210801衢州:101211001宁波:101210401重庆:101040100合川:101040300南川:101040400江津:101040500万盛:101040600渝北:101040700北碚:101040800巴南:101040900长寿:101041000黔江:101041100万州天城:101041200万州龙宝:101041300涪陵:101041400开县:101041500城口:101041600云阳:101041700巫溪:101041800奉节:101041900巫山:101042000潼南:101042100垫江:101042200梁平:101042300忠县:101042400石柱:101042500大足:101042600荣昌:101042700铜梁:101042800璧山:101042900丰都:101043000武隆:101043100彭水:101043200綦江:101043300酉阳:101043400秀山:101043600沙坪坝:101043700永川:101040200福州:101230101泉州:101230501漳州:101230601龙岩:101230701晋江:101230509南平:101230901厦门:101230201宁德:101230301莆田:101230401三明:101230801兰州:101160101平凉:101160301庆阳:101160401武威:101160501金昌:101160601嘉峪关:101161401酒泉:101160801天水:101160901武都:101161001临夏:101161101合作:101161201白银:101161301定西:101160201张掖:101160701广州:101280101惠州:101280301梅州:101280401汕头:101280501深圳:101280601珠海:101280701佛山:101280800肇庆:101280901湛江:101281001江门:101281101河源:101281201清远:101281301云浮:101281401潮州:101281501东莞:101281601中山:101281701阳江:101281801揭阳:101281901茂名:101282001汕尾:101282101韶关:101280201南宁:101300101柳州:101300301来宾:101300401桂林:101300501梧州:101300601防城港:101301401贵港:101300801玉林:101300901百色:101301001钦州:101301101河池:101301201北海:101301301崇左:101300201贺州:101300701贵阳:101260101安顺:101260301都匀:101260401兴义:101260906铜仁:101260601毕节:101260701六盘水:101260801遵义:101260201凯里:101260501昆明:101290101红河:101290301文山:101290601玉溪:101290701楚雄:101290801普洱:101290901昭通:101291001临沧:101291101怒江:101291201香格里拉:101291301丽江:101291401德宏:101291501景洪:101291601大理:101290201曲靖:101290401保山:101290501呼和浩特:101080101乌海:101080301集宁:101080401通辽:101080501阿拉善左旗:101081201鄂尔多斯:101080701临河:101080801锡林浩特:101080901呼伦贝尔:101081000乌兰浩特:101081101包头:101080201赤峰:101080601南昌:101240101上饶:101240301抚州:101240401宜春:101240501鹰潭:101241101赣州:101240701景德镇:101240801萍乡:101240901新余:101241001九江:101240201吉安:101240601武汉:101200101黄冈:101200501荆州:101200801宜昌:101200901恩施:101201001十堰:101201101神农架:101201201随州:101201301荆门:101201401天门:101201501仙桃:101201601潜江:101201701襄樊:101200201鄂州:101200301孝感:101200401黄石:101200601咸宁:101200701成都:101270101自贡:101270301绵阳:101270401南充:101270501达州:101270601遂宁:101270701广安:101270801巴中:101270901泸州:101271001宜宾:101271101内江:101271201资阳:101271301乐山:101271401眉山:101271501凉山:101271601雅安:101271701甘孜:101271801阿坝:101271901德阳:101272001广元:101272101攀枝花:101270201银川:101170101中卫:101170501固原:101170401石嘴山:101170201吴忠:101170301西宁:101150101黄南:101150301海北:101150801果洛:101150501玉树:101150601海西:101150701海东:101150201海南:101150401济南:101120101潍坊:101120601临沂:101120901菏泽:101121001滨州:101121101东营:101121201威海:101121301枣庄:101121401日照:101121501莱芜:101121601聊城:101121701青岛:101120201淄博:101120301德州:101120401烟台:101120501济宁:101120701泰安:101120801西安:101110101延安:101110300榆林:101110401铜川:101111001商洛:101110601安康:101110701汉中:101110801宝鸡:101110901咸阳:101110200渭南:101110501太原:101100101临汾:101100701运城:101100801朔州:101100901忻州:101101001长治:101100501大同:101100201阳泉:101100301晋中:101100401晋城:101100601吕梁:101101100乌鲁木齐:101130101石河子:101130301昌吉:101130401吐鲁番:101130501库尔勒:101130601阿拉尔:101130701阿克苏:101130801喀什:101130901伊宁:101131001塔城:101131101哈密:101131201和田:101131301阿勒泰:101131401阿图什:101131501博乐:101131601克拉玛依:101130201拉萨:101140101山南:101140301阿里:101140701昌都:101140501那曲:101140601日喀则:101140201林芝:101140401台北县:101340101高雄:101340201台中:101340401海口:101310101三亚:101310201东方:101310202临高:101310203澄迈:101310204儋州:101310205昌江:101310206白沙:101310207琼中:101310208定安:101310209屯昌:101310210琼海:101310211文昌:101310212保亭:101310214万宁:101310215陵水:101310216西沙:101310217南沙岛:101310220乐东:101310221五指山:101310222琼山:101310102长沙:101250101株洲:101250301衡阳:101250401郴州:101250501常德:101250601益阳:101250700娄底:101250801邵阳:101250901岳阳:101251001张家界:101251101怀化:101251201黔阳:101251301永州:101251401吉首:101251501湘潭:101250201南京:101190101镇江:101190301苏州:101190401南通:101190501扬州:101190601宿迁:101191301徐州:101190801淮安:101190901连云港:101191001常州:101191101泰州:101191201无锡:101190201盐城:101190701哈尔滨:101050101牡丹江:101050301佳木斯:101050401绥化:101050501黑河:101050601双鸭山:101051301伊春:101050801大庆:101050901七台河:101051002鸡西:101051101鹤岗:101051201齐齐哈尔:101050201大兴安岭:101050701长春:101060101延吉:101060301四平:101060401白山:101060901白城:101060601辽源:101060701松原:101060801吉林:101060201通化:101060501沈阳:101070101鞍山:101070301抚顺:101070401本溪:101070501丹东:101070601葫芦岛:101071401营口:101070801阜新:101070901辽阳:101071001铁岭:101071101朝阳:101071201盘锦:101071301大连:101070201锦州:101070701
+    </string>
 
-代立冬：我走上计算机这条路主要源于大学室友熏陶，我本身是学数学专业的，按常理毕业后应该当个教师。而我们宿舍6个室友有一半学数学，一半学计算机。经常看室友们写点小程序，觉得挺厉害，有时还听他们吹牛皮：他们班一同学写了个校园论坛云云，长期耳濡目染后，自然走上了这条道。有一段时间还常跑去听他们老师讲专业课。后来在网上找到一些商城的开源代码，有空就折腾折腾，不时添加点需求实现下，当然当时的主流还是做网站开发，SSH框架大行其道，不像现在择业方向这样广。
-
-CSDN知识库：HBase作为NoSQL数据库，与其他NoSQL产品有哪些区别和优势？
-
-代立冬：这里拿NoSQL主要的两个代表作品做下对比（HBase和MongoDB），两者主要的区别：
-
-MongoDB是文档型数据库，整个数据都存在磁盘中，HBase是列式数据库，存储时按column family保存到对应的hdfs文件中;
-MongoDB支持二级索引，而HBase本身不支持二级索引；
-MongoDB的update是update-in-place，也就是原地更新，而HBase的修改和添加都使用put，实际上HBase内部对已经存在的rowkey数据，只是将这一数据用不同的版本号保存下来而已，HBase默认的保存版本的数量是3；
-HBase根据文件的大小来控制region的分裂，在HBase内部，存储时，数据按照Row key的字典序(byte order)排序存储；MongoDB根据负载来决定shards的分裂；
-MongoDB和HBase都支持mapreduce，不过MongoDB的mapreduce支持不够强大，调试也较麻烦；
-MongoDB的读效率比写高，HBase默认适合写多读少的情况。
-以我们的线上使用情况，对rowkey分布均匀的情况，HBase集群的写速度单台regionserver达到3~4w/秒，单key查询一般10ms内返回(如果使用SSD硬盘会更快)。由于我们线上每天写入70多亿条数据，当时MongoDB还没有收购WiredTiger，当时MongoDB的写入锁是个很大问题，所以我们技术选型就选的HBase。
-
-CSDN知识库：如何提升HBase的读写性能？
-
-代立冬：首先我们需要知道影响读写性能有什么因素：
-
-写速度关键因素
-
-table region分布均衡;
-单台region server的region数;
-hbase.regionserver.handler.count;
-hbase.regionserver.global.memstore.upperLimit;
-hbase.hregion.memstore.block.multiplier;
-hbase.hstore.blockingStoreFiles;
-hbase.hregion.max.filesize;
-读速度关键因素
-
-单台Region Server上的Region数;
-StoreFile数;
-bloomfilter;
-in-memory flag;
-blockcache设置;
-hfile.block.cache.size;
-然后具体性能优化可分为服务端和客户端，服务端和客户端我列几个代表性的(详细请参见http://blog.csdn.net/odailidong/article/details/41794403)
-
-服务端：
-
-hbase.hregion.max.filesize：默认是10G，如果任何一个column familiy里的StoreFile超过这个值, 那么这个Region会一分为二，因为Region分裂会有短暂的Region下线时间(通常在5s以内)，建议手动定时分裂，可以设置为60G；
-hbase.hregion.majorcompaction：hbase的Region主合并的间隔时间，默认为1天，建议设置为0，禁止自动的major主合并，major合并会把一个store下所有的storefile重写为一个storefile文件，还会把有删除标识的数据删除，业务低峰期major合并；
-hbase.hregion.memstore.flush.size：默认值128M，单位字节，一旦有memstore超过该值将被flush，如果regionserver的jvm内存比较充足(16G以上)，可以调整为256M；
-hbase.hstore.compaction.max：默认值为10,一次最多合并多少个storefile，避免OOM；
-hbase.hstore.blockingStoreFiles：默认为7，如果任何一个store(非.META.表里的store)的storefile的文件数大于该值，则在flush memstore前先进行split或者compact，同时把该region添加到flushQueue，延时刷新，这期间会阻塞写操作直到compact完成或者超过hbase.hstore.blockingWaitTime(默认90s)配置的时间，可以设置为30，避免memstore不及时flush。
-客户端
-
-hbase.client.write.buffer：默认为2M，写缓存大小，推荐设置为5M，单位是字节，当然越大占用的内存越多，此外测试过设为10M下的入库性能，反而没有5M好；
-hbase.client.pause：默认是1000(1s)，如果你希望低延时的读或者写，建议设为200，这个值通常用于失败重试，region寻找等；
-hbase.client.retries.number：默认值是10，客户端最多重试次数,可以设为11，结合上面的参数，共重试时间71s；
-hbase.ipc.client.tcpnodelay：默认是false，建议设为true，关闭消息缓冲；
-hbase.client.scanner.caching：scan缓存，默认为1，避免占用过多的client和rs的内存，一般1000以内合理，如果一条数据太大，则应该设置一个较小的值，通常是设置业务需求的一次查询的数据条数，如果是扫描数据对下次查询没有帮助，则可以设置scan的setCacheBlocks为false，避免使用缓存；
-限定扫描范围：指定列簇或者指定要查询的列，指定startRow和endRow。通过java多线程入库和查询，并控制超时时间。
-CSDN知识库：HBase的rowkey设计需要注意哪些情况，有哪些好的设计方案？
-
-代立冬：整体上说rowkey设计尽量分布均匀，避免热点。常见的均匀rowkey设计可考虑逆序，加盐值打散，如果是递增数字，还可考虑使用Long.maxValue减去当前值。
-
-rowkey的特点：
-
-三维有序rowkey（行主键,按ascii排序）
-columnkey(columnFamily+qualifier)
-timestamp(时间戳)
-举个简单例子，比如手机号分为13,15,17,18等号段，但是13开头的手机号码特别的多，这时就可以考虑逆序下是否能满足需求。rowkey的设计应具体场景具体对待。如果怎么设计，都避免不了会产生热点的问题，也不用太担心，下面这个问题是针对热点的一些处理办法。
-
-CSDN知识库：HBase发生数据热点问题时，应该从哪些角度分析问题？
-
-代立冬：热点问题通常是某些region读取或写入压力过大，热点可以通过设置监控阀值来发现。
-在监控检测到热点region时，可以手动(自动)进行热点region split，如果发现某台region server上不少region是热点，可以考虑，move region到其它空闲的region server上，注意监控region server服务器的硬件，比如cpu、memory、io、network等指标。如果需要删除大量数据，尽量考虑设置TTL数据自动过期删除。而后可以返回来去考虑主键的设计，是否采用压缩等。
-
-CSDN知识库：如何基于HBase实现二级索引，开源方案中常用的有哪些，以及性能如何？
-
-代立冬：这个我没有实际使用过，一些开源的二级索引通过使用协处理器去做的，但协处理器运行在region server本身的内存中，对于大型集群，不建议使用。有些替代的办法比如可以考虑结合ElasticSearch使用
-
-CSDN知识库：从哪些方面可以判断HBase集群是否健康？
-
-代立冬：对于1个需要7*24小时在线服务的集群来说，这个通常需要有一套监控报警系统去监控HBase集群的运行状况，我们当时调研过世面上很多开源的监控，都不大满意。最后参照sematext公司的产品实现了1套自己的hbase(含hdfs)监控报警体系。
-
-对于Hbase健康，我主要关注以下指标：
-
-zookeeper的状态、连接数(一般一台zookeeper节点上连接数不会超过200)、发送和接收数据量
-region热点，region storefile个数和size，region split失败次数情况(吃过大亏)
-region memstore大小、flush队列大小、flush耗时及大小情况。
-block cache命中率及cache大小
-region server的合并/分裂队列数，我们是每天在业务低峰时定时合并/分裂region的，所以这个值大部分时间都是0
-region server上rpc连接数，jvm内存gc情况，经jvm参数优化，对64G的jvm内存还没有出现过full gc的情况
-当然还有一些指标，不一一列举了。
-
-CSDN知识库：介绍一些HBase的典型应用场景？
-
-代立冬：个人总结的一些场景，欢迎补充：
-
-存储大量数据(TB级以上)，需要很高的写吞吐能力，在大规模数据集中随机访问(基于rowkey)，需要水平扩展能力，易维护；
-不适合对事务要求高、多维度查询的场景。
-CSDN知识库:对HBase初学者有没有什么好的建议？
-
-代立冬：建议理论->实践->理论理论这样的路线，HBase的用法跟关系型数据库的用法不大一样，从关系型转过来的同学需要稍转变下思路，现在网上的关于HBase资料很多，多看，多练，对于测试集群来说，尝试把服务搞瘫痪，再尝试修复。还可以关注官方的issue列表，国内还可以加几个qq群，多问问群里的热心人
-
-CSDN知识库：你最近在研究哪些技术？谈谈自己的感受。
-
-代立冬：现在数据平台整体稳定，我个人抽时间学了些深度学习方面的技术，主要是cnn、rnn。对我冲击最大的是深度学习效果在某些场景（比如分类）为何如此好，当然也有我头疼的地方，就是它现在还需要有大量的标注数据然后效果才能上去。很多传统的机器学习做法，比如复杂的验证码识别等用深度学习实现，效果很好。
-
-CSDN知识库：关于技术学习您有什么心得？我们上线了知识库系统化学习的方法，您会怎么应用呢？
-
-代立冬：大数据时代随着很多新兴概念逐渐流行，相应的技术也会有很多，我觉得还是脚踏实地，尽量在工作中运用上所学技术，实践中积累，总结，同时多分享自己的所学知识给伙伴们，在给别人帮助同时受益可能最大的还是自己。现在在搜一些问题解决方法时，也经常能看到CSDN的身影，对CSDN付出如此大的力气去做这个知识体系建设，实属难得。我刚好在学习深度学习，现在知识库里面列出了深度学习体系的知识点，并且每个知识点有不少精选的文章，我会着重找下相关的最新的业界进展，顺便看下有没有相关开放的数据集，另外我也会搜集整理成自己的知识体系
-		</string>
 </resources>

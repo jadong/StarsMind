@@ -68,7 +68,6 @@ public class BookPageWidget extends View {
 
 	public BookPageWidget(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 		mPath0 = new Path();
 		mPath1 = new Path();
 		this.mWidth = AppUtils.getScreenWidth();
@@ -107,8 +106,7 @@ public class BookPageWidget extends View {
 			mIsRTandLB = false;
 	}
 
-	public boolean doTouchEvent(MotionEvent event) {
-		// TODO Auto-generated method stub
+	public void doTouchEvent(MotionEvent event) {
 		if (event.getAction() == MotionEvent.ACTION_MOVE) {
 			mTouch.x = event.getX();
 			mTouch.y = event.getY();
@@ -130,8 +128,6 @@ public class BookPageWidget extends View {
 
 			this.postInvalidate();
 		}
-		// return super.onTouchEvent(event);
-		return true;
 	}
 
 	public PointF getCross(PointF P1, PointF P2, PointF P3, PointF P4) {
@@ -533,7 +529,7 @@ public class BookPageWidget extends View {
 		return false;
 	}
 
-	public boolean DragToRight() {
+	public boolean dragToRight() {
 		if (mCornerX > 0)
 			return false;
 		return true;

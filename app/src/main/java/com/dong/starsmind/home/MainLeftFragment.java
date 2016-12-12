@@ -3,29 +3,37 @@ package com.dong.starsmind.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.dong.starsmind.R;
-import com.dong.starsmind.bookshelf.activity.BookshelfActivity;
-import com.dong.starsmind.bookshelf.activity.ReadActivity;
+import com.dong.starsmind.read.activity.BookshelfActivity;
+import com.dong.starsmind.tuling.activity.TuLingActivity;
+import com.dong.starsmind.news.activity.HealthNewsActivity;
+import com.dong.starsmind.todo.activity.TodoListActivity;
 
 /**
  * Created by zengwendong on 16/11/3.
  */
 public class MainLeftFragment extends Fragment implements View.OnClickListener{
 
-    private CardView card_view_bookshelf;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_left,null);
-        card_view_bookshelf = (CardView) view.findViewById(R.id.card_view_bookshelf);
-        card_view_bookshelf.setOnClickListener(this);
+        view.findViewById(R.id.card_view_bookshelf).setOnClickListener(this);
+        view.findViewById(R.id.card_view_event).setOnClickListener(this);
+        view.findViewById(R.id.card_view_health).setOnClickListener(this);
+        view.findViewById(R.id.card_view_send).setOnClickListener(this);
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
     }
 
     @Override
@@ -33,6 +41,15 @@ public class MainLeftFragment extends Fragment implements View.OnClickListener{
         switch (v.getId()){
             case R.id.card_view_bookshelf:
                 BookshelfActivity.startActivity(getActivity());
+                break;
+            case R.id.card_view_event:
+                TodoListActivity.startActivity(getActivity());
+                break;
+            case R.id.card_view_health:
+                HealthNewsActivity.startActivity(getActivity());
+                break;
+            case R.id.card_view_send:
+                TuLingActivity.startActivity(getActivity());
                 break;
             default:
                 break;

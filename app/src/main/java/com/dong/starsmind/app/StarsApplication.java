@@ -3,6 +3,9 @@ package com.dong.starsmind.app;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
+import com.antfortune.freeline.FreelineCore;
+import com.dong.starsmind.utils.AppUtils;
+
 import org.xutils.x;
 
 /**
@@ -15,7 +18,9 @@ public class StarsApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        FreelineCore.init(this);
         appContext = this;
         x.Ext.init(this);
+        AppGlobal.uniqueId = AppUtils.getMac();
     }
 }

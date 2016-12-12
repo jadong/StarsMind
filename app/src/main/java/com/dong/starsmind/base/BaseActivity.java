@@ -21,7 +21,7 @@ public abstract class BaseActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         setEnableSwipeBack(getEnableSwipeBack());
         setContentView(getContentView());
-        setDragEdge(SwipeBackLayout.DragEdge.LEFT);//默认从左边滑动退出
+        setDragEdge(getDragEdge());//默认从左边滑动退出
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -39,7 +39,7 @@ public abstract class BaseActivity extends SwipeBackActivity {
     }
 
     @Override
-    public void onPostCreate(Bundle savedInstanceState) {
+    public void onPostCreate(Bundle savedInstanceState) {//onStart后执行
         super.onPostCreate(savedInstanceState);
         if (toolbar != null) {
             toolbar.setTitle(getToolBarTitle());
@@ -53,9 +53,16 @@ public abstract class BaseActivity extends SwipeBackActivity {
         return true;
     }
 
+    protected SwipeBackLayout.DragEdge getDragEdge(){
+        return SwipeBackLayout.DragEdge.LEFT;//默认从左边滑动退出
+    }
+
     @LayoutRes
     protected abstract int getContentView();
 
+    /**
+     * initView方法后执行
+     */
     protected abstract String getToolBarTitle();
 
     protected abstract void initView();
