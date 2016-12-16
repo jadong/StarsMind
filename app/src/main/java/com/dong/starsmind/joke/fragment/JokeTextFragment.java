@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.dong.starsmind.R;
 import com.dong.starsmind.common.viewholder.FooterViewHolder;
-import com.dong.starsmind.news.adapter.JokeAdapter;
+import com.dong.starsmind.joke.adapter.JokeAdapter;
 import com.dong.starsmind.joke.entity.Joke;
 import com.dong.starsmind.joke.presenter.JokePresenter;
 import com.dong.starsmind.news.view.JokeListView;

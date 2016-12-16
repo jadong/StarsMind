@@ -1,7 +1,7 @@
 package com.dong.starsmind.api;
 
 
-import com.dong.starsmind.app.AppConstants;
+import com.dong.starsmind.constant.AppConstants;
 import com.dong.starsmind.news.entity.ResponseEntity;
 
 import java.util.HashMap;

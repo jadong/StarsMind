@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.DimenRes;
+import android.support.annotation.StringRes;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -82,6 +83,10 @@ public class AppUtils {
 
     public static float getDimension(@DimenRes int id){
        return StarsApplication.appContext.getResources().getDimension(id);
+    }
+
+    public static String getString(@StringRes int id){
+        return StarsApplication.appContext.getResources().getString(id);
     }
 
     public static ArrayList<String> getGalleryPhotos(Activity act) {

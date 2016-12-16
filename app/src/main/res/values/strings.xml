@@ -7,6 +7,8 @@
     <string name="health_title">生活健康</string>
     <string name="joke_title">笑话大全</string>
     <string name="search_title">搜索</string>
+    <string name="today_history_event">今日历史事件</string>
+    <string name="event_detail">事件详情</string>
     <string name="txt_refresh">刷新</string>
     <string name="txt_pull_refresh">下拉刷新...</string>
     <string name="txt_release_refresh">松开刷新...</string>
@@ -22,6 +24,7 @@
     <string name="txt_reminder_time">提醒时间</string>
     <string name="txt_confirm">确定</string>
     <string name="txt_cancel">取消</string>
+    <string name="txt_data_exception">数据异常</string>
 
 
     <string name="address_str">
