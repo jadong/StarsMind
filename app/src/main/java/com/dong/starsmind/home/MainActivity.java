@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 import com.dong.starsmind.R;
 import com.dong.starsmind.base.BaseActivity;
-import com.dong.starsmind.joke.adapter.JokeViewPageAdapter;
+import com.dong.starsmind.joke.adapter.MainViewPageAdapter;
 import com.dong.starsmind.utils.AppUtils;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected String getToolBarTitle() {
-        return getString(R.string.joke_title);
+        return getString(R.string.home_title);
     }
 
     @Override
@@ -72,8 +72,8 @@ public class MainActivity extends BaseActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        viewPager.setAdapter(new JokeViewPageAdapter(getSupportFragmentManager()));
-        initMagicIndicator();
+        viewPager.setAdapter(new MainViewPageAdapter(getSupportFragmentManager()));
+        //initMagicIndicator();
         setListener();
     }
 

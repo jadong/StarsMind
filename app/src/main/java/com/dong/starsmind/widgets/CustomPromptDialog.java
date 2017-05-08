@@ -14,15 +14,16 @@ import android.widget.TextView;
 import com.dong.starsmind.R;
 
 /**
+ * 自定义提示框
  * Created by zengwendong on 16/11/30.
  */
-public class CustomDialog extends Dialog {
+public class CustomPromptDialog extends Dialog {
 
-    public CustomDialog(Context context) {
+    public CustomPromptDialog(Context context) {
         super(context);
     }
 
-    public CustomDialog(Context context, int theme) {
+    public CustomPromptDialog(Context context, int theme) {
         super(context, theme);
     }
 
@@ -120,11 +121,11 @@ public class CustomDialog extends Dialog {
             return this;
         }
 
-        public CustomDialog create() {
+        public CustomPromptDialog create() {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             // instantiate the dialog with the custom Theme
-            final CustomDialog dialog = new CustomDialog(context, R.style.Dialog);
+            final CustomPromptDialog dialog = new CustomPromptDialog(context, R.style.Dialog);
             View layout = inflater.inflate(R.layout.layout_custom_dialog, null);
             dialog.addContentView(layout, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             // set the dialog title

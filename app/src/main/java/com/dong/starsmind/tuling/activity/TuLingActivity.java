@@ -26,7 +26,7 @@ import com.dong.starsmind.common.view.RefreshListView;
 import com.dong.starsmind.db.DBOperation;
 import com.dong.starsmind.db.DBPage;
 import com.dong.starsmind.utils.KeyboardHelper;
-import com.dong.starsmind.widgets.CustomDialog;
+import com.dong.starsmind.widgets.CustomPromptDialog;
 import com.dong.starsmind.widgets.LoadMoreRecyclerView;
 
 /**
@@ -162,7 +162,7 @@ public class TuLingActivity extends BaseActivity implements RefreshListView<Mess
         switch (item.getItemId()) {
             case R.id.btn_clear:
 
-                CustomDialog.Builder builder = new CustomDialog.Builder(this);
+                CustomPromptDialog.Builder builder = new CustomPromptDialog.Builder(this);
                 builder.setMessage("确定清除所有记录吗?");
                 builder.setTitle("提示");
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {

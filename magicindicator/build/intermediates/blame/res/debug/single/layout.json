@@ -1,31 +1,31 @@
 [
     {
-        "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/debug/layout/notification_template_media_custom.xml",
-        "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.1/res/layout/notification_template_media_custom.xml"
-    },
-    {
         "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
         "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.1/res/layout/support_simple_spinner_dropdown_item.xml"
     },
     {
-        "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
-        "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.1/res/layout/abc_expanded_menu_layout.xml"
-    },
-    {
-        "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
-        "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.1/res/layout/abc_screen_simple.xml"
+        "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/debug/layout/notification_template_media_custom.xml",
+        "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.1/res/layout/notification_template_media_custom.xml"
     },
     {
         "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/debug/layout/pager_navigator_layout.xml",
         "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/src/main/res/layout/pager_navigator_layout.xml"
     },
     {
-        "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/debug/layout/abc_popup_menu_header_item_layout.xml",
-        "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.1/res/layout/abc_popup_menu_header_item_layout.xml"
+        "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
+        "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.1/res/layout/abc_screen_simple.xml"
+    },
+    {
+        "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.1/res/layout/abc_expanded_menu_layout.xml"
     },
     {
         "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
         "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.1/res/layout/abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/debug/layout/abc_popup_menu_header_item_layout.xml",
+        "source": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.1/res/layout/abc_popup_menu_header_item_layout.xml"
     },
     {
         "merged": "/Users/admin/AndroidStudioProjects/StarsMind/magicindicator/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow_custom.xml",

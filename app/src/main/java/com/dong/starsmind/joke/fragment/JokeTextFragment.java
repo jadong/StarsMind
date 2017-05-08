@@ -1,14 +1,19 @@
 package com.dong.starsmind.joke.fragment;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.dong.starsmind.R;
+import com.dong.starsmind.app.SMLog;
 import com.dong.starsmind.common.viewholder.FooterViewHolder;
 import com.dong.starsmind.joke.adapter.JokeAdapter;
 import com.dong.starsmind.joke.entity.Joke;
@@ -28,18 +33,24 @@ public class JokeTextFragment extends Fragment implements JokeListView {
 
     private SuperSwipeRefreshLayout swipeRefreshLayout;
     private LoadMoreRecyclerView rv_joke_list;
+    private FloatingActionButton fab_up;
 
     private JokePresenter jokePresenter;
     private JokeAdapter jokeAdapter;
     private int pageNo = 1;//页码
+    private int scrollY = 0;
+    private int screen_height = 0 ;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_joke_text,null);
+        View view = inflater.inflate(R.layout.fragment_joke_text, null);
+        fab_up = (FloatingActionButton) view.findViewById(R.id.fab_up);
+        fab_up.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.orange)));
         swipeRefreshLayout = (SuperSwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         rv_joke_list = (LoadMoreRecyclerView) view.findViewById(R.id.rv_joke_list);
-        rv_joke_list.setLayoutManager(new LinearLayoutManager(getActivity()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        rv_joke_list.setLayoutManager(layoutManager);
 
         return view;
     }
@@ -47,6 +58,8 @@ public class JokeTextFragment extends Fragment implements JokeListView {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        screen_height = AppUtils.getScreenHeight();
         jokePresenter = new JokePresenter(this);
 
         setAdapter();
@@ -61,6 +74,15 @@ public class JokeTextFragment extends Fragment implements JokeListView {
     }
 
     private void setListener() {
+        rv_joke_list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                scrollY += dy;
+                fab_up.setVisibility(scrollY > screen_height ? View.VISIBLE : View.GONE);
+                SMLog.i("JokeTextFragment", "RecyclerView---scrollY-->=" + scrollY);
+            }
+        });
+
         final PullDownHeaderView headerView = new PullDownHeaderView(getActivity());
         swipeRefreshLayout.setHeaderView(headerView);
         swipeRefreshLayout.setOnPullRefreshListener(new SuperSwipeRefreshLayout.OnPullRefreshListener() {
@@ -69,7 +91,7 @@ public class JokeTextFragment extends Fragment implements JokeListView {
                 headerView.setRefreshing();
                 Joke item = jokeAdapter.getFirstItem();
                 if (item != null) {
-                    jokePresenter.getJokeByTime("text",item.getUnixtime());
+                    jokePresenter.getJokeByTime("text", item.getUnixtime());
                 }
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -97,10 +119,17 @@ public class JokeTextFragment extends Fragment implements JokeListView {
             }
         });
 
+        fab_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scrollY = 0;
+                rv_joke_list.scrollToPosition(0);
+            }
+        });
     }
 
     private void loadData() {
-        jokePresenter.getJokeList("text",pageNo);
+        jokePresenter.getJokeList("text", pageNo);
     }
 
     @Override

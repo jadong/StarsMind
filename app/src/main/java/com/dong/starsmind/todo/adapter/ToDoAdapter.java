@@ -113,10 +113,10 @@ public class ToDoAdapter extends RecyclerViewAdapter<TODO> implements ReloadList
     public void onSuccess(Object o) {
         try {
             int deletePos = (int) o;
-            //删除RecyclerView列表对应item
-            notifyItemRemoved(deletePos);
             //删除dataList数据
             dataList.remove(deletePos);
+            //删除RecyclerView列表对应item
+            notifyItemRemoved(deletePos);
         } catch (Exception e) {
             e.printStackTrace();
         }
